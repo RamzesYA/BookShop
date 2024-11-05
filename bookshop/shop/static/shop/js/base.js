@@ -40,3 +40,27 @@ options: {
   }
 }
 });
+
+
+const data1 = JSON.parse(document.getElementById('data1').textContent);
+const ctx3 = document.getElementById('myChart3');
+
+new Chart(ctx3, {
+type: 'line',
+data: {
+  labels: data1.labels,
+  datasets: [{
+    label: 'Рейтинг книг',
+    data: data1.total_rate/data1.rate_counts,
+    data: new Array(data1.total_rate.length).fill(0).map((_,i)=>Math.round(data1.total_rate[i]/(data1.rate_counts[i]||1))),
+    borderWidth: 1
+  }]
+},
+options: {
+  scales: {
+    y: {
+      beginAtZero: true
+    }
+  }
+}
+});

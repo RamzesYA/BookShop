@@ -253,13 +253,70 @@ def get_statistics_for_day():
     return labels, order_counts, total_amounts
 
 
+def get_statistics_for_year_rate():
+    today = datetime.now().date()
+
+    rate = BookRating.objects.filter(created_at__year=today.year)
+
+    labels = []
+    rate_counts = []
+    total_rate = []
+
+    for month in range(1, 13):
+        labels.append(str(month))
+
+        rate_counts.append(rate.filter(created_at__month=month).count())
+        total_rate.append(
+            rate.filter(created_at__month=month).aggregate(total_score=Sum('score'))['total_score'] or 0)
+
+    return labels, rate_counts, total_rate
+
+
+def get_statistics_for_month_rate():
+    today = datetime.now().date()
+
+    rate = BookRating.objects.filter(created_at__month=today.month, created_at__year=today.year)
+
+    labels = []
+    rate_counts = []
+    total_rate = []
+
+    for day in range(1, today.day + 1):
+        labels.append(str(day))
+
+        rate_counts.append(rate.filter(created_at__day=day).count())
+        total_rate.append(
+            rate.filter(created_at__day=day).aggregate(total_score=Sum('score'))['total_score'] or 0)
+
+    return labels, rate_counts, total_rate
+
+
+def get_statistics_for_day_rate():
+    today = datetime.now().date()
+
+    rate = BookRating.objects.filter(created_at__date=today)
+
+    labels = []
+    rate_counts = []
+    total_rate = []
+
+    for hour in range(0, 24):
+        labels.append(str(hour) + ':00')
+
+        rate_counts.append(rate.filter(created_at__hour=hour).count() or 1)
+        total_rate.append(
+            rate.filter(created_at__hour=hour).aggregate(total_score=Sum('score'))['total_score'] or 0)
+
+    return labels, rate_counts, total_rate
+
+
 class StatisticView(TemplateView):
     template_name = 'shop/statistic.html'
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        if 'period' in self.request.GET:
-            period = self.request.GET.get('period')
+        if 'period1' in self.request.GET:
+            period = self.request.GET.get('period1')
             labels = order_counts = total_amounts = get_statistics_for_day()
 
             if period == 'day':
@@ -275,20 +332,21 @@ class StatisticView(TemplateView):
                 'total_amounts': total_amounts
             }
             return dict(list(context.items()))
-        if 'period' in self.request.GET:
-            period = self.request.GET.get('period')
-            labels = order_counts = total_amounts = get_statistics_for_day()
+
+        if 'period2' in self.request.GET:
+            period = self.request.GET.get('period2')
+            labels = rate_counts = total_rate = get_statistics_for_day_rate()
 
             if period == 'day':
-                labels, order_counts, total_amounts = get_statistics_for_day()
+                labels, rate_counts, total_rate = get_statistics_for_day_rate()
             elif period == 'month':
-                labels, order_counts, total_amounts = get_statistics_for_month()
+                labels, rate_counts, total_rate = get_statistics_for_month_rate()
             elif period == 'year':
-                labels, order_counts, total_amounts = get_statistics_for_year()
+                labels, rate_counts, total_rate = get_statistics_for_year_rate()
 
-            context['data'] = {
+            context['data1'] = {
                 'labels': labels,
-                'order_counts': order_counts,
-                'total_amounts': total_amounts
+                'rate_counts': rate_counts,
+                'total_rate': total_rate
             }
             return dict(list(context.items()))

@@ -76,6 +76,8 @@ class BookRating(models.Model):
     user_id = models.ForeignKey(User, on_delete=models.PROTECT)
     book_id = models.ForeignKey('Book', on_delete=models.PROTECT)
     score = models.IntegerField('Оценка')
+    created_at = models.DateTimeField('Дата создания', auto_now_add=True)
+    updated_at = models.DateTimeField('Дата обновления', auto_now=True)
 
     def str(self):
         return self.pk

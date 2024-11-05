@@ -339,7 +339,7 @@ th, td {
   border: 1px solid #ccc;
 }
 
-#myChart1, #myChart2 {
+#myChart1, #myChart2, #myChart3 {
   margin: auto;
   display: block;
   width: 1000px;

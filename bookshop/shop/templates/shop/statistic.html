@@ -6,8 +6,8 @@
 
 <form method="get">
    {% csrf_token %}
-  <label for="period">Период:</label>
-  <select name="period" id="period" name="period">
+  <label for="period1">Период:</label>
+  <select name="period1" id="period1" name="period1">
     <option value="day">За день</option>
     <option value="month">За месяц</option>
     <option value="year">За год</option>
@@ -28,12 +28,12 @@
 {{ data|json_script:"data" }}
 
 
-<h1>Статистика заказов</h1>
+<h1>Статистика рейтинга книг</h1>
 
 <form method="get">
    {% csrf_token %}
-  <label for="period">Период:</label>
-  <select name="period" id="period" name="period">
+  <label for="period2">Период:</label>
+  <select name="period2" id="period2" name="period2">
     <option value="day">За день</option>
     <option value="month">За месяц</option>
     <option value="year">За год</option>
@@ -44,14 +44,11 @@
 
 <div class="row">
   <div class="col-sm-6">
-    <canvas id="myChart1"></canvas>
-  </div>
-  <div class="col-sm-6">
-    <canvas id="myChart2"></canvas>
+    <canvas id="myChart3"></canvas>
   </div>
 </div>
 
-{{ data|json_script:"data" }}
+{{ data1|json_script:"data1" }}
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="{% static 'shop/js/base.js' %}"></script>
