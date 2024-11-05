@@ -1,0 +1,58 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+
+{% block main %}
+<h1>Статистика заказов</h1>
+
+<form method="get">
+   {% csrf_token %}
+  <label for="period">Период:</label>
+  <select name="period" id="period" name="period">
+    <option value="day">За день</option>
+    <option value="month">За месяц</option>
+    <option value="year">За год</option>
+  </select>
+
+  <input type="submit" value="Показать">
+</form>
+
+<div class="row">
+  <div class="col-sm-6">
+    <canvas id="myChart1"></canvas>
+  </div>
+  <div class="col-sm-6">
+    <canvas id="myChart2"></canvas>
+  </div>
+</div>
+
+{{ data|json_script:"data" }}
+
+
+<h1>Статистика заказов</h1>
+
+<form method="get">
+   {% csrf_token %}
+  <label for="period">Период:</label>
+  <select name="period" id="period" name="period">
+    <option value="day">За день</option>
+    <option value="month">За месяц</option>
+    <option value="year">За год</option>
+  </select>
+
+  <input type="submit" value="Показать">
+</form>
+
+<div class="row">
+  <div class="col-sm-6">
+    <canvas id="myChart1"></canvas>
+  </div>
+  <div class="col-sm-6">
+    <canvas id="myChart2"></canvas>
+  </div>
+</div>
+
+{{ data|json_script:"data" }}
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="{% static 'shop/js/base.js' %}"></script>
+{% endblock %}

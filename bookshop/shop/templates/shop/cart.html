@@ -1,0 +1,34 @@
+{% extends 'shop/base.html' %}
+
+{% block main %}
+<h2>Корзина</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Название книги</th>
+        <th>Количество</th>
+        <th>Цена</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for item in cart  %}
+            <tr>
+              <td>{{ item.book_id }}</td>
+              <td>{{ item.amount }}</td>
+              <td>{{ item.price }}</td>
+            </tr>
+        {% endfor %}
+            <tr>
+              <td></td>
+              <td></td>
+              <td>Итог: {{ total.total_price }}</td>
+            </tr>
+    </tbody>
+  </table>
+    {% if total.total_price > 0 %}
+        <form method="post">
+             {% csrf_token %}
+            <input type="submit" value="Оплатить" class="buy-button">
+        </form>
+    {% endif %}
+{% endblock %}

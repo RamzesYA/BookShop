@@ -1,0 +1,57 @@
+{% extends 'shop/base.html' %}
+
+{% block main %}
+<div class="container">
+    <div class="book-image">
+        {% if book.cover %}
+            <img src="{{book.cover.url}}" alt="Обложка книги">
+        {% endif %}
+    </div>
+    <div class="book-info">
+      <h1>{{book.name}}</h1>
+      <p class="author">Автор: {{book.author}}</p>
+      <p class="genre">Жанр:
+            {% for item in book.genre.all %}
+              {{ item.name }}
+            {% endfor %}
+      </p>
+      <p class="rating">Рейтинг: {{book.rating}}</p>
+      <p class="orders_count">Кол-во заказов: {{book.orders_count}}</p>
+      <p class="stock_count">Оставшееся кол-во книг: {{book.stock_count}}</p>
+      <p class="page_count">Кол-во страниц: {{book.page_count}}</p>
+      <p class="published_by">Издательство: {{book.published_by}}</p>
+      <p class="published_at">Год публикации: {{book.published_at}}</p>
+      <p class="description">Описание книги: {{book.annotations}}</p>
+      <p class="price">Цена: {{book.price}}</p>
+            {% if request.user.is_authenticated %}
+                {% if book.stock_count > 0 %}
+                    <form method="post">
+                         {% csrf_token %}
+                        <input type="number" id="stock_count" name="stock_count" min="1" max="{{book.stock_count}}" />
+                        <input type="submit" value="В корзину" class="buy-button">
+                    </form>
+                {% else %}
+                    <h3> Книга временно отсутствует </h3>
+                {% endif %}
+                    {% if not israte %}
+                        <h1>Оценка книги</h1>
+                      <form method="post">
+                         {% csrf_token %}
+                        <label for="rating">Оценка:</label>
+                        <select id="rating" name="rating">
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                          <option value="5">5</option>
+                        </select>
+                        <input type="submit" value="Отправить">
+                      </form>
+                    {% endif %}
+            {% else %}
+                <a href="{% url 'register' %}" class="buy-button">Регистрация</a>
+                <a href="{% url 'login' %}" class="buy-button">Авторизация</a>
+            {% endif %}
+    </div>
+</div>
+{% endblock %}

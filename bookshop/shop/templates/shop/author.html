@@ -1,0 +1,16 @@
+{% extends 'shop/base.html' %}
+
+{% block main %}
+<div class="container">
+    <div class="author-image">
+        {% if author.photo %}
+            <img src="{{author.photo.url}}" alt="Фото автора">
+        {% endif %}
+    </div>
+    <div class="author-info">
+      <h1>{{author.full_name}}</h1>
+      <p class="birthday">Дата рождения: {{author.birthday}}</p>
+      <p class="discription">Об авторе: {{author.discription}}</p>
+    </div>
+  </div>
+{% endblock %}

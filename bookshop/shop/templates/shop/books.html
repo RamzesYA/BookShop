@@ -1,0 +1,24 @@
+{% extends 'shop/base.html' %}
+
+{% block main %}
+<main>
+    <ul class="book-list">
+      {% for b in books %}
+          <li>
+            <a href="{{b.pk}}">
+              <div class="book-cover">
+                {% if b.cover %}
+                    <img src="{{b.cover.url}}" alt="Обложка книги 1">
+                {% endif %}
+              </div>
+              <div class="book-info">
+                <h3>{{b.name}}</h3>
+                <p>Автор: {{b.author}}</p>
+                <p>Стоимость: {{b.price}}.</p>
+              </div>
+            </a>
+          </li>
+      {% endfor %}
+    </ul>
+  </main>
+{% endblock %}

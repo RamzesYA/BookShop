@@ -1,0 +1,42 @@
+{% load static %}
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block  title%} {% endblock %}</title>
+    <link type="text/css" href="{% static 'shop/css/base.css' %}" rel="stylesheet" />
+</head>
+<body>
+    <header>
+        <div class="logo">
+          <img src="logo.png" alt="Логотип">
+        </div>
+        <nav>
+          <ul>
+<!--            <li><a href="{% url 'home' %}">Главная</a></li>-->
+            <li><a href="{% url 'books' %}">Книги</a></li>
+            <li><a href="{% url 'authors' %}">Авторы</a></li>
+              {% if request.user.is_superuser %}
+                <li><a href="{% url 'statistic' %}">Статистика</a></li>
+              {% endif %}
+          </ul>
+        </nav>
+        <div class="auth">
+            {% if request.user.is_authenticated %}
+          <a href="{% url 'cart' %}">Корзина</a>
+          <a href="{% url 'profile' user.username %}">{{user.username}}</a>
+          <a href="{% url 'logout' %}">Выйти</a>
+            {% else %}
+          <a href="{% url 'register' %}">Регистрация</a>
+          <a href="{% url 'login' %}">Авторизация</a>
+            {% endif %}
+        </div>
+    </header>
+
+{% block main %} {% endblock %}
+
+</body>
+</html>

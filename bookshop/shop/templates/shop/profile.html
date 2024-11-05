@@ -1,0 +1,82 @@
+{% extends 'shop/base.html' %}
+
+{% block main %}
+<h1 class="user-h">Ваши данные</h1>
+  <form method="post" class="user">
+    {% csrf_token %}
+    <h2 class="u-login">Логин: {{ user.username }}</h2>
+
+    {% if user.email %}
+      <div class="block">
+        <p class="u-data">Почта:</p>
+        <input name="mail" value="{{ user.email }}"></input>
+      </div>
+    {% else %}
+      <div class="block">
+        <p class="u-data">Почта:</p>
+        <input name="mail" value="Введите почту"></input>
+      </div>
+    {% endif %}
+
+    {% if user.first_name %}
+      <div class="block">
+        <p class="u-data">Имя:</p>
+        <input name="fName" value="{{ user.first_name }}"></input>
+      </div>
+    {% else %}
+      <div class="block">
+        <p class="u-data">Имя:</p>
+        <input name="fName" value="Введите имя"></input>
+      </div>
+    {% endif %}
+
+    {% if user.last_name %}
+      <div class="block">
+        <p class="u-data">Фамилия:</p>
+        <input type="text" name="sName" value="{{ user.last_name }}"></input>
+      </div>
+    {% else %}
+      <div class="block">
+        <p class="u-data">Фамилия:</p>
+        <input type="text" name="sName" value="Введите фамилию"></input>
+      </div>
+    {% endif %}
+
+    <button type="submit" class="user-b">Изменить</button>
+  </form>
+
+  <h2>История заказов</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Номер заказа</th>
+        <th>Книги</th>
+        <th>Количество</th>
+        <th>Статус</th>
+        <th>Стоимость</th>
+        <th>Дата заказа</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for order in ord %}
+        <tr>
+          <td>{{ order.order_id }}</td>
+          <td>
+            {% for item in order.ba %}
+              {{ item.book_id.name }}<br>
+            {% endfor %}
+          </td>
+          <td>
+           {% for item in order.ba %}
+              {{ item.amount }}<br>
+            {% endfor %}
+          </td>
+          <td>{{ order.status }}</td>
+          <td>{{ order.price }}</td>
+          <td>{{ order.date }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+{% endblock %}

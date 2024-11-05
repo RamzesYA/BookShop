@@ -1,0 +1,347 @@
+/* Общие стили */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Заголовок */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #f5f5f5;
+}
+
+/* Логотип */
+.logo {
+  width: 100px;
+}
+
+/* Навигация */
+nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+nav ul {
+  list-style-type: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+nav li {
+  margin: 0 10px;
+}
+
+nav li:hover {
+  transition: background-color 0.2s ease-in-out;
+  background-color: #d3d3d3;
+}
+
+nav a {
+  text-decoration: none;
+  color: #000;
+}
+
+/* Авторизация */
+.auth {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.auth a {
+  margin: 0 10px;
+  text-decoration: none;
+  color: #000;
+}
+
+.auth a:hover {
+  transition: background-color 0.2s ease-in-out;
+  background-color: #d3d3d3;
+}
+
+
+
+/* books */
+/* Список книг */
+.book-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  list-style-type: none;
+  padding: 0;
+}
+
+.book-list li {
+  margin: 10px;
+  width: 250px;
+  border: 2px solid #ccc;
+}
+
+.book-list li:hover {
+  transition: background-color 0.2s ease-in-out;
+  background-color: #f5f5f5;
+}
+
+.book-list a {
+  text-decoration: none;
+  color: #000;
+}
+
+/* Обложка книги */
+.book-cover {
+  width: 200px;
+  height: 300px;
+  overflow: hidden;
+  text-align: center;
+}
+
+.book-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Информация о книге */
+.book-info {
+  padding: 10px;
+}
+
+.book-info h3 {
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.book-info p {
+  font-size: 14px;
+  margin-bottom: 2px;
+}
+
+
+
+/* authors */
+/* Список книг */
+.author-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  list-style-type: none;
+  padding: 0;
+}
+
+.author-list li {
+  margin: 10px;
+  width: 250px;
+  border: 2px solid #ccc;
+}
+
+.author-list li:hover {
+  transition: background-color 0.2s ease-in-out;
+  background-color: #f5f5f5;
+}
+
+.author-list a {
+  text-decoration: none;
+  color: #000;
+}
+
+/* Обложка книги */
+.author-cover {
+  width: 200px;
+  height: 300px;
+  overflow: hidden;
+  text-align: center;
+}
+
+.author-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Информация о книге */
+.author-info {
+  padding: 10px;
+}
+
+.author-info h3 {
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.author-info p {
+  font-size: 14px;
+  margin-bottom: 2px;
+}
+
+
+
+
+/* book */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Изображение книги */
+.book-image {
+  width: 300px;
+  height: 450px;
+}
+
+.book-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Информация о книге */
+.book-info {
+  max-width: 500px;
+}
+
+.book-info h1 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.book-info p {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.book-info .description {
+  line-height: 1.5;
+}
+
+.book-info .price {
+  font-weight: bold;
+}
+
+/* Кнопка покупки */
+.buy-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  text-decoration: none;
+}
+
+
+
+
+
+/* author */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Изображение книги */
+.author-image {
+  width: 300px;
+  height: 450px;
+}
+
+.author-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Информация о книге */
+.author-info {
+  max-width: 500px;
+}
+
+.author-info h1 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.author-info p {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.author-info .discription {
+  line-height: 1.5;
+}
+
+
+
+/* profile */
+.user-h {
+  text-align: center;
+}
+
+.user h2 {
+  text-align: center;
+}
+
+.user form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.u-login {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.block {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.u-data {
+  margin-right: 1rem;
+}
+
+.user input {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.user-b {
+  margin: 0 auto;
+  padding: 0.5rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #ccc;
+  cursor: pointer;
+  display: flex;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+}
+
+#myChart1, #myChart2 {
+  margin: auto;
+  display: block;
+  width: 1000px;
+  height: 500px;
+}

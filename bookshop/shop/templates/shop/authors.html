@@ -1,0 +1,23 @@
+{% extends 'shop/base.html' %}
+
+{% block main %}
+<main>
+    <ul class="author-list">
+      {% for a in authors %}
+          <li>
+            <a href="{{a.pk}}">
+              <div class="author-cover">
+                {% if a.photo %}
+                    <img src="{{a.photo.url}}" alt="Фото автора">
+                {% endif %}
+              </div>
+              <div class="author-info">
+                <h3>{{a.full_name}}</h3>
+                <p>Дата рождения: {{a.birthday|date:"d.m.Y"}}.</p>
+              </div>
+            </a>
+          </li>
+      {% endfor %}
+    </ul>
+  </main>
+{% endblock %}
